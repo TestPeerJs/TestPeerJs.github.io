@@ -6,7 +6,7 @@
    <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
 </head>
 <body>
-	<p><h3>Мой ID: </h3><span id=myid ></span></p>
+	<p><h1>Мой ID: </h1><span id=myid ></span></p>
 	<input id=otherPeerId type=text placeholder="otherPeerId" > <button onclick="callToNode(document.getElementById('otherPeerId').value)">Вызов</button>
 	
 	<br>
@@ -15,10 +15,10 @@
 	<video id=remVideo width="400px" height="auto" ></video>
 <script>
 var callOptions={'iceServers': [
-		{url: 'stun:95.xxx.xx.x9:3479',		
+		{urls: 'stun:95.xxx.xx.x9:3479',		
 		username: "user",
 		credential: "xxxxxxxxxx"},
-		{ url: "turn:95.xxx.xx.x9:3478",		
+		{ urls: "turn:95.xxx.xx.x9:3478",		
 		username: "user",
 		credential: "xxxxxxxx"}]
 	}; 
