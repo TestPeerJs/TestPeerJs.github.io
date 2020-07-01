@@ -22,10 +22,10 @@ function checkSafari() {
 }
 
 var callOptions={'iceServers': [
-		{urls: 'stun:95.xxx.xx.x9:3479',		
+		{url: 'stun:95.xxx.xx.x9:3479',		
 		username: "user",
 		credential: "xxxxxxxxxx"},
-		{ urls: "turn:95.xxx.xx.x9:3478",		
+		{ url: "turn:95.xxx.xx.x9:3478",		
 		username: "user",
 		credential: "xxxxxxxx"}]
 	}; 
@@ -33,7 +33,7 @@ var callOptions={'iceServers': [
 	if (checkSafari()) {
 		callOptions.serialization = "json";
 	}
-	
+
 peer= new Peer({config: callOptions}); 
 peer.on('open', function(peerID) {
 			document.getElementById('myid').innerHTML=peerID;			
