@@ -14,6 +14,13 @@
 	<div id=callinfo ></div>
 	<video id=remVideo width="400px" height="auto" ></video>
 <script>
+
+function checkSafari() {
+  let seemsChrome = navigator.userAgent.indexOf("Chrome") > -1;
+  let seemsSafari = navigator.userAgent.indexOf("Safari") > -1;
+  return seemsSafari && !seemsChrome;
+}
+
 var callOptions={'iceServers': [
 		{urls: 'stun:95.xxx.xx.x9:3479',		
 		username: "user",
@@ -22,6 +29,11 @@ var callOptions={'iceServers': [
 		username: "user",
 		credential: "xxxxxxxx"}]
 	}; 
+
+	if (checkSafari()) {
+		callOptions.serialization = "json";
+	}
+	
 peer= new Peer({config: callOptions}); 
 peer.on('open', function(peerID) {
 			document.getElementById('myid').innerHTML=peerID;			
