@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <title>Peer</title>
-   <script src="https://unpkg.com/peerjs@1.0.0/dist/peerjs.min.js"></script>
+   <script src="https://unpkg.com/peerjs@1.1.0/dist/peerjs.min.js"></script>
 </head>
 <body>
 	<p><h1>Мой ID: </h1><span id=myid ></span></p>
@@ -14,14 +14,26 @@
 	<div id=callinfo ></div>
 	<video id=remVideo width="400px" height="auto" ></video>
 <script>
+
+function checkSafari() {
+  let seemsChrome = navigator.userAgent.indexOf("Chrome") > -1;
+  let seemsSafari = navigator.userAgent.indexOf("Safari") > -1;
+  return seemsSafari && !seemsChrome;
+}
+
 var callOptions={'iceServers': [
-		{urls: 'stun:95.xxx.xx.x9:3479',		
+		{url: 'stun:95.xxx.xx.x9:3479',		
 		username: "user",
 		credential: "xxxxxxxxxx"},
-		{ urls: "turn:95.xxx.xx.x9:3478",		
+		{ url: "turn:95.xxx.xx.x9:3478",		
 		username: "user",
 		credential: "xxxxxxxx"}]
 	}; 
+
+	if (checkSafari()) {
+		callOptions.serialization = "json";
+	}
+
 peer= new Peer({config: callOptions}); 
 peer.on('open', function(peerID) {
 			document.getElementById('myid').innerHTML=peerID;			
